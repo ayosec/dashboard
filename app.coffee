@@ -49,4 +49,25 @@ getGitHub = do ->
         if found == sources.length
           callback(items)
 
+# Travis configuration
+
+getTravis = do ->
+  request = require('https').request
+  options =
+    host: "api.travis-ci.com",
+    port: 443
+    path: "/repos/"
+    method: "GET",
+    headers: { "Authorization": "token #{Config.TRAVIS_TOKEN}" }
+
+  (callback) -> request(options,
+    (res) ->
+      data = ""
+      res.on "data", (d) -> data = data.concat(d.toString())
+      res.on "end", -> callback(data)
+  ).on("error", (error) ->
+    console.log("Travis request error:", error)
+    callback("[]")
+  ).end()
+
 
