@@ -69,13 +69,20 @@ body {
     &:last-child { border-bottom: 0; }
 
     .details {
-      .gravatar img { position: absolute; }
+      .gravatar { display: none; }
+
       ul {
+        padding-left: 1ex;
         list-style-type: none;
-        .message, blockquote {
-          display: inline;
-          margin: 1ex 0.2ex;
-        }
+      }
+
+      blockquote {
+        margin: 1ex;
+      }
+
+      .message, blockquote {
+        display: inline;
+        margin: 0;
       }
     }
   }

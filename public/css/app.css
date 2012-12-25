@@ -73,16 +73,20 @@ body {
 #github .item:last-child {
   border-bottom: 0;
 }
-#github .item .details .gravatar img {
-  position: absolute;
+#github .item .details .gravatar {
+  display: none;
 }
 #github .item .details ul {
+  padding-left: 1ex;
   list-style-type: none;
 }
-#github .item .details ul .message,
-#github .item .details ul blockquote {
+#github .item .details blockquote {
+  margin: 1ex;
+}
+#github .item .details .message,
+#github .item .details blockquote {
   display: inline;
-  margin: 1ex 0.2ex;
+  margin: 0;
 }
 #twitter .tweet {
   padding: 2ex 1ex;

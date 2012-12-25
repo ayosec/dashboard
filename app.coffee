@@ -43,12 +43,12 @@ getGitHub = do ->
     for feed in sources
       new feedr.Feedr().readFeeds source: { url: feed }, (err, result) ->
         if not err
-          for item in result.source.feed.entry.sort((a,b) -> new Date(a).getTime() - new Date(b).getTime())
-            items.push(item.content[0]["_"])
+          for item in result.source.feed.entry
+            items.push(item)
 
         found += 1
         if found == sources.length
-          callback(items)
+          callback(i.content[0]["_"] for i in items.sort((a,b) -> new Date(b.published).getTime() - new Date(a.published).getTime()))
 
 # Travis configuration
 
