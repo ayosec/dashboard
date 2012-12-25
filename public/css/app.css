@@ -19,7 +19,7 @@ body {
   padding: 1em;
   font-size: 110%;
   text-shadow: 2px 2px #eee;
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #ccc;
 }
 #travis .failed:last-child,
 #travis .success:last-child {
