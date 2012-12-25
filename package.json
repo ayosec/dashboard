@@ -6,6 +6,7 @@
   "dependencies" : {
     "coffee-script": "1.x",
     "twitter": "0.1.x",
+    "feedr": "2.4.x",
     "express": "3.0.x",
     "brewer": "0.3.x"
   },
