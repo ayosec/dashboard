@@ -1,3 +1,110 @@
 body {
-  background: black;
+  background: #222;
+  font-size: 10pt;
+  font-family: sans-serif;
+}
+#travis,
+#github,
+#twitter {
+  background: white;
+  vertical-align: top;
+  display: inline-block;
+  width: 30%;
+  margin: 1.5%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 40px #eee;
+}
+#travis .failed,
+#travis .success {
+  padding: 1em;
+  font-size: 110%;
+  text-shadow: 2px 2px #eee;
+  border-bottom: 1px solid #777;
+}
+#travis .failed:last-child,
+#travis .success:last-child {
+  border-bottom: 0;
+}
+#travis .failed {
+  color: #800;
+}
+#travis .success {
+  color: #080;
+}
+#travis .number,
+#travis .meta {
+  display: inline-block;
+}
+#travis .number,
+#travis .name {
+  font-size: 120%;
+}
+#travis .number {
+  vertical-align: top;
+  text-align: right;
+  padding-right: 0.5em;
+  width: 3em;
+}
+#travis .number:before {
+  content: "#";
+}
+#travis .finished-at,
+#travis .duration {
+  margin-top: 5px;
+  font-size: 90%;
+}
+#github .item {
+  padding: 1em;
+  border-bottom: 1px solid #ccc;
+}
+#github .item a {
+  color: #77f;
+  text-decoration: none;
+}
+#github .item .simple .time {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+#github .item .time {
+  text-align: right;
+  color: #777;
+  margin-bottom: 1em;
+}
+#github .item:last-child {
+  border-bottom: 0;
+}
+#github .item .details .gravatar img {
+  position: absolute;
+}
+#github .item .details ul {
+  list-style-type: none;
+}
+#github .item .details ul .message,
+#github .item .details ul blockquote {
+  display: inline;
+  margin: 1ex 0.2ex;
+}
+#twitter .tweet {
+  padding: 2ex 1ex;
+  border-bottom: 1px solid #ccc;
+}
+#twitter .tweet:last-child {
+  border-bottom: 0;
+}
+#twitter .tweet .avatar {
+  position: absolute;
+}
+#twitter .tweet .avatar img {
+  max-width: 40px;
+}
+#twitter .tweet .content {
+  padding-left: 50px;
+}
+#twitter .tweet .author {
+  font-weight: bold;
+  color: #aaa;
+}
+#twitter .tweet .created-at {
+  color: #999;
+  text-align: right;
 }

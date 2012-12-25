@@ -29,7 +29,7 @@ getTwitter = do ->
     access_token_key: Config.TWITTER_ACCESS_TOKEN_KEY
     access_token_secret: Config.TWITTER_ACCESS_TOKEN_SECRET
 
-  (callback) -> client.get("/statuses/home_timeline.json", { include_rts: 1, count: 30 }, callback)
+  (callback) -> client.get("/statuses/home_timeline.json", { include_rts: "true", count: 30 }, callback)
 
 # GitHub feeds
 
@@ -65,10 +65,10 @@ getTravis = do ->
     (res) ->
       data = ""
       res.on "data", (d) -> data = data.concat(d.toString())
-      res.on "end", -> callback(data)
+      res.on "end", -> callback(JSON.parse(data))
   ).on("error", (error) ->
     console.log("Travis request error:", error)
-    callback("[]")
+    callback([])
   ).end()
 
 
@@ -83,8 +83,8 @@ do ->
 
 app.use(express.static(__dirname + '/public'))
 
-app.get "/twitter", (req, res) -> getTwitter((data)-> res.end(JSON.stringify(data)))
-app.get "/github",  (req, res) -> getGitHub((data)-> res.end(JSON.stringify(data)))
-app.get "/travis",  (req, res) -> getTravis((data)-> res.end(data))
+app.get "/twitter", (req, res) -> getTwitter((data)-> res.json(data))
+app.get "/github",  (req, res) -> getGitHub((data)-> res.json(data))
+app.get "/travis",  (req, res) -> getTravis((data)-> res.json(data))
 
 app.listen(process.env.PORT ? 9000)
