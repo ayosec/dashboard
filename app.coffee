@@ -81,6 +81,8 @@ do ->
   [user, password] = Config.BASIC_AUTH.split(":")
   app.use express.basicAuth(user, password)
 
+app.use(express.static(__dirname + '/public'))
+
 app.get "/twitter", (req, res) -> getTwitter((data)-> res.end(JSON.stringify(data)))
 app.get "/github",  (req, res) -> getGitHub((data)-> res.end(JSON.stringify(data)))
 app.get "/travis",  (req, res) -> getTravis((data)-> res.end(data))

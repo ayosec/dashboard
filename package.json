@@ -4,6 +4,7 @@
 
   "description": "Dashboard which combines Travis, GitHub and Twitter",
   "dependencies" : {
+    "less": "1.3.x",
     "express": "3.0.x",
     "coffee-script": "1.x",
     "twitter": "0.1.x",
