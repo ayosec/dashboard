@@ -9,7 +9,8 @@ for item in [
   "TWITTER_CONSUMER_KEY",
   "TWITTER_CONSUMER_SECRET",
   "TWITTER_ACCESS_TOKEN_KEY",
-  "TWITTER_ACCESS_TOKEN_SECRET"
+  "TWITTER_ACCESS_TOKEN_SECRET",
+  "BASIC_AUTH"
 ]
   if value = process.env[item]
     Config[item] = value
@@ -42,7 +43,7 @@ getGitHub = do ->
     for feed in sources
       new feedr.Feedr().readFeeds source: { url: feed }, (err, result) ->
         if not err
-          for item in result.source.feed.entry
+          for item in result.source.feed.entry.sort((a,b) -> new Date(a).getTime() - new Date(b).getTime())
             items.push(item.content[0]["_"])
 
         found += 1
@@ -71,3 +72,17 @@ getTravis = do ->
   ).end()
 
 
+# Web application
+
+express = require('express')
+app = express()
+
+do ->
+  [user, password] = Config.BASIC_AUTH.split(":")
+  app.use express.basicAuth(user, password)
+
+app.get "/twitter", (req, res) -> getTwitter((data)-> res.end(JSON.stringify(data)))
+app.get "/github",  (req, res) -> getGitHub((data)-> res.end(JSON.stringify(data)))
+app.get "/travis",  (req, res) -> getTravis((data)-> res.end(data))
+
+app.listen(process.env.PORT ? 9000)
