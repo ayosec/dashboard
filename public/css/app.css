@@ -15,14 +15,16 @@ body {
   box-shadow: 2px 2px 40px #eee;
 }
 #travis .failed,
-#travis .success {
+#travis .success,
+#travis .working {
   padding: 1em;
   font-size: 110%;
   text-shadow: 2px 2px #eee;
   border-bottom: 1px solid #ccc;
 }
 #travis .failed:last-child,
-#travis .success:last-child {
+#travis .success:last-child,
+#travis .working:last-child {
   border-bottom: 0;
 }
 #travis .failed {
@@ -30,6 +32,9 @@ body {
 }
 #travis .success {
   color: #080;
+}
+#travis .working {
+  color: #a43;
 }
 #travis .number,
 #travis .meta {

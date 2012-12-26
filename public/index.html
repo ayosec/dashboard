@@ -9,14 +9,17 @@
   </head>
   <body>
     <div id="travis" data-bind="foreach: builds">
-      <div data-bind="css: { success: last_build_result === 0, failed: last_build_result > 0 }">
+      <div data-bind="css: { success: last_build_result === 0, failed: last_build_result > 0, working: last_build_finished_at === null}">
         <div class="number" data-bind="text: last_build_number"></div>
         <div class="meta">
           <div class="name" data-bind="text: slug"></div>
-          <div class="finished-at">
+          <div class="finished-at" data-bind="if: last_build_finished_at === null">
+            Started: <span data-bind="text: new Date(last_build_started_at).toRelativeTime()"></span>
+          </div>
+          <div class="finished-at" data-bind="if: last_build_finished_at">
             Finished: <span data-bind="text: new Date(last_build_finished_at).toRelativeTime()"></span>
           </div>
-          <div class="duration">
+          <div class="duration" data-bind="if: last_build_duration">
             Duration: <span data-bind="text: last_build_duration"></span> seconds
           </div>
         </div>
